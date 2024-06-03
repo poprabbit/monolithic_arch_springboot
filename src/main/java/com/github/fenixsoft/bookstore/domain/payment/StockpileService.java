@@ -41,6 +41,7 @@ public class StockpileService {
 
     /**
      * 根据产品查询库存
+     * 这里的库存id与商品id一致
      */
     public Stockpile getByProductId(Integer productId) {
         return repository.findById(productId).orElseThrow(() -> new EntityNotFoundException(productId.toString()));

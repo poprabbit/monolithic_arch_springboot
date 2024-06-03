@@ -30,7 +30,7 @@ import java.util.Optional;
 /**
  * 认证用户信息查询服务
  * <p>
- * {@link UserDetailsService}接口定义了从外部（数据库、LDAP，任何地方）根据用户名查询到
+ * {@link UserDetailsService}接口定义了从外部（数据库、LDAP，任何地方）根据用户名查询到用户的方法
  */
 @Named
 public class AuthenticAccountDetailsService implements UserDetailsService {

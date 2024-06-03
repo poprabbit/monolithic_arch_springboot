@@ -1,0 +1,261 @@
+发生超卖，同时获取库存，冻结为负数
+
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select product0_.id as id1_3_, product0_.cover as cover2_3_, product0_.description as descript3_3_, product0_.detail as detail4_3_, product0_.price as price5_3_, product0_.rate as rate6_3_, product0_.title as title7_3_ from product product0_ where product0_.id in (?)
+Hibernate: select specificat0_.product_id as product_3_4_0_, specificat0_.id as id1_4_0_, specificat0_.id as id1_4_1_, specificat0_.item as item2_4_1_, specificat0_.product_id as product_3_4_1_, specificat0_.value as value4_4_1_ from specification specificat0_ where specificat0_.product_id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:17:00.447  INFO - [http-nio-8080-exec-8] c.g.f.b.domain.payment.StockpileService [78]: 原库存，商品：8，11 - 0
+07:17:00.447  INFO - [http-nio-8080-exec-8] c.g.f.b.domain.payment.StockpileService [80]: 冻结后库存，商品：8，1 - 10
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select product0_.id as id1_3_, product0_.cover as cover2_3_, product0_.description as descript3_3_, product0_.detail as detail4_3_, product0_.price as price5_3_, product0_.rate as rate6_3_, product0_.title as title7_3_ from product product0_ where product0_.id in (?)
+Hibernate: select specificat0_.product_id as product_3_4_0_, specificat0_.id as id1_4_0_, specificat0_.id as id1_4_1_, specificat0_.item as item2_4_1_, specificat0_.product_id as product_3_4_1_, specificat0_.value as value4_4_1_ from specification specificat0_ where specificat0_.product_id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:17:16.114  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [78]: 原库存，商品：8，11 - 0
+07:17:16.114  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [80]: 冻结后库存，商品：8，1 - 10
+07:17:16.114  INFO - [http-nio-8080-exec-8] c.g.f.b.domain.payment.StockpileService [82]: 冻结库存，商品：8，数量：10
+07:17:18.333  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [82]: 冻结库存，商品：8，数量：10
+Hibernate: insert into payment (id, create_time, expires, pay_id, pay_state, payment_link, total_price) values (default, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into payment (id, create_time, expires, pay_id, pay_state, payment_link, total_price) values (default, ?, ?, ?, ?, ?, ?)
+07:17:18.380  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.PaymentService   [76]: 创建支付订单，总额：12.0
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+07:17:18.395  INFO - [http-nio-8080-exec-8] c.g.f.b.domain.payment.PaymentService   [76]: 创建支付订单，总额：12.0
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:18:52.380  WARN - [http-nio-8080-exec-5] c.g.f.b.i.j.ViolationExceptionMapper    [44]: 客户端传入了校验结果为非法的数据
+
+javax.validation.ConstraintViolationException: executeSettlement.settlement: 商品库存不足
+	at org.glassfish.jersey.server.validation.internal.DefaultConfiguredValidator.onValidate(DefaultConfiguredValidator.java:159) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.validation.internal.ValidationInterceptorExecutor.proceed(ValidationInterceptorExecutor.java:90) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.validation.internal.DefaultConfiguredValidator.validateResourceAndInputParams(DefaultConfiguredValidator.java:122) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:114) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:219) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:79) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:469) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:391) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:80) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:253) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:248) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:244) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:292) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:274) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:244) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:232) [jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:680) [jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:392) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:365) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:318) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter.doFilter(OAuth2AuthenticationProcessingFilter.java:176) [spring-security-oauth2-2.3.5.RELEASE.jar:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_202]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_202]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_202]
+
+Hibernate: select payment0_.id as id1_2_0_, payment0_.create_time as create_t2_2_0_, payment0_.expires as expires3_2_0_, payment0_.pay_id as pay_id4_2_0_, payment0_.pay_state as pay_stat5_2_0_, payment0_.payment_link as payment_6_2_0_, payment0_.total_price as total_pr7_2_0_ from payment payment0_ where payment0_.id=?
+07:19:18.395  INFO - [Timer-0] c.g.f.b.domain.payment.PaymentService   [140]: 支付单0当前状态为：WAITING，转变为：TIMEOUT
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+07:19:18.411  INFO - [Timer-0] c.g.f.b.domain.payment.StockpileService [93]: 解冻库存，商品：8，数量：10
+Hibernate: select payment0_.id as id1_2_0_, payment0_.create_time as create_t2_2_0_, payment0_.expires as expires3_2_0_, payment0_.pay_id as pay_id4_2_0_, payment0_.pay_state as pay_stat5_2_0_, payment0_.payment_link as payment_6_2_0_, payment0_.total_price as total_pr7_2_0_ from payment payment0_ where payment0_.id=?
+07:19:18.426  INFO - [Timer-0] c.g.f.b.domain.payment.PaymentService   [140]: 支付单1当前状态为：WAITING，转变为：TIMEOUT
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+07:19:18.426  INFO - [Timer-0] c.g.f.b.domain.payment.StockpileService [93]: 解冻库存，商品：8，数量：10
+
+
+发生超卖，先后获取库存，总数为负数
+
+Hibernate: select product0_.id as id1_3_, product0_.cover as cover2_3_, product0_.description as descript3_3_, product0_.detail as detail4_3_, product0_.price as price5_3_, product0_.rate as rate6_3_, product0_.title as title7_3_ from product product0_ where product0_.id in (?)
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select product0_.id as id1_3_, product0_.cover as cover2_3_, product0_.description as descript3_3_, product0_.detail as detail4_3_, product0_.price as price5_3_, product0_.rate as rate6_3_, product0_.title as title7_3_ from product product0_ where product0_.id in (?)
+Hibernate: select specificat0_.product_id as product_3_4_0_, specificat0_.id as id1_4_0_, specificat0_.id as id1_4_1_, specificat0_.item as item2_4_1_, specificat0_.product_id as product_3_4_1_, specificat0_.value as value4_4_1_ from specification specificat0_ where specificat0_.product_id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select specificat0_.product_id as product_3_4_0_, specificat0_.id as id1_4_0_, specificat0_.id as id1_4_1_, specificat0_.item as item2_4_1_, specificat0_.product_id as product_3_4_1_, specificat0_.value as value4_4_1_ from specification specificat0_ where specificat0_.product_id=?
+07:57:14.018  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [78]: 原库存，商品：1，11 - 0
+07:57:14.018  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [80]: 冻结后库存，商品：1，1 - 10
+07:57:14.018  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.StockpileService [82]: 冻结库存，商品：1，数量：10
+Hibernate: insert into payment (id, create_time, expires, pay_id, pay_state, payment_link, total_price) values (default, ?, ?, ?, ?, ?, ?)
+07:57:14.018  INFO - [http-nio-8080-exec-9] c.g.f.b.domain.payment.PaymentService   [76]: 创建支付订单，总额：1302.0
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:57:17.009  INFO - [http-nio-8080-exec-6] c.g.f.b.domain.payment.StockpileService [78]: 原库存，商品：1，1 - 10
+07:57:17.009  INFO - [http-nio-8080-exec-6] c.g.f.b.domain.payment.StockpileService [80]: 冻结后库存，商品：1，-9 - 20
+07:57:17.009  INFO - [http-nio-8080-exec-6] c.g.f.b.domain.payment.StockpileService [82]: 冻结库存，商品：1，数量：10
+Hibernate: insert into payment (id, create_time, expires, pay_id, pay_state, payment_link, total_price) values (default, ?, ?, ?, ?, ?, ?)
+07:57:17.025  INFO - [http-nio-8080-exec-6] c.g.f.b.domain.payment.PaymentService   [76]: 创建支付订单，总额：1302.0
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:58:44.465  WARN - [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool       [779]: HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s541ms272µs600ns).
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+07:58:44.465  WARN - [http-nio-8080-exec-5] c.g.f.b.i.j.ViolationExceptionMapper    [44]: 客户端传入了校验结果为非法的数据
+
+javax.validation.ConstraintViolationException: executeSettlement.settlement: 商品库存不足
+	at org.glassfish.jersey.server.validation.internal.DefaultConfiguredValidator.onValidate(DefaultConfiguredValidator.java:159) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.validation.internal.ValidationInterceptorExecutor.proceed(ValidationInterceptorExecutor.java:90) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.validation.internal.DefaultConfiguredValidator.validateResourceAndInputParams(DefaultConfiguredValidator.java:122) ~[jersey-bean-validation-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:114) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:219) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:79) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:469) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:391) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:80) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:253) ~[jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:248) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:244) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:292) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:274) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:244) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265) [jersey-common-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:232) [jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:680) [jersey-server-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:392) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:365) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:318) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205) [jersey-container-servlet-core-2.29.1.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter.doFilter(OAuth2AuthenticationProcessingFilter.java:176) [spring-security-oauth2-2.3.5.RELEASE.jar:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_202]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_202]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_202]
+
+Hibernate: select payment0_.id as id1_2_0_, payment0_.create_time as create_t2_2_0_, payment0_.expires as expires3_2_0_, payment0_.pay_id as pay_id4_2_0_, payment0_.pay_state as pay_stat5_2_0_, payment0_.payment_link as payment_6_2_0_, payment0_.total_price as total_pr7_2_0_ from payment payment0_ where payment0_.id=?
+07:59:14.025  INFO - [Timer-0] c.g.f.b.domain.payment.PaymentService   [140]: 支付单2当前状态为：WAITING，转变为：TIMEOUT
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+07:59:14.025  INFO - [Timer-0] c.g.f.b.domain.payment.StockpileService [93]: 解冻库存，商品：1，数量：10
+Hibernate: select payment0_.id as id1_2_0_, payment0_.create_time as create_t2_2_0_, payment0_.expires as expires3_2_0_, payment0_.pay_id as pay_id4_2_0_, payment0_.pay_state as pay_stat5_2_0_, payment0_.payment_link as payment_6_2_0_, payment0_.total_price as total_pr7_2_0_ from payment payment0_ where payment0_.id=?
+07:59:19.817  INFO - [Timer-0] c.g.f.b.domain.payment.PaymentService   [140]: 支付单3当前状态为：WAITING，转变为：TIMEOUT
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: select stockpile0_.id as id1_5_0_, stockpile0_.amount as amount2_5_0_, stockpile0_.frozen as frozen3_5_0_ from stockpile stockpile0_ where stockpile0_.id=?
+Hibernate: update stockpile set amount=?, frozen=? where id=?
+07:59:19.817  INFO - [Timer-0] c.g.f.b.domain.payment.StockpileService [93]: 解冻库存，商品：1，数量：10
+

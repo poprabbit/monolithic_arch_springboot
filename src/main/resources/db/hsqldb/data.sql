@@ -82,14 +82,18 @@ INSERT INTO advertisement VALUES (1, '/static/carousel/fenix2.png',8);
 INSERT INTO advertisement VALUES (2, '/static/carousel/ai.png',2);
 INSERT INTO advertisement VALUES (3, '/static/carousel/jvm3.png',1);
 
-INSERT INTO stockpile VALUES (1, 30, 0, 1);
-INSERT INTO stockpile VALUES (2, 30, 0, 2);
-INSERT INTO stockpile VALUES (3, 30, 0, 3);
-INSERT INTO stockpile VALUES (4, 30, 0, 4);
-INSERT INTO stockpile VALUES (5, 30, 0, 5);
-INSERT INTO stockpile VALUES (6, 30, 0, 6);
-INSERT INTO stockpile VALUES (7, 30, 0, 7);
-INSERT INTO stockpile VALUES (8, 30, 0, 8);
+INSERT INTO stockpile VALUES (1, 11, 0, 1);
+INSERT INTO stockpile VALUES (2, 11, 0, 2);
+INSERT INTO stockpile VALUES (3, 11, 0, 3);
+INSERT INTO stockpile VALUES (4, 11, 0, 4);
+INSERT INTO stockpile VALUES (5, 11, 0, 5);
+INSERT INTO stockpile VALUES (6, 11, 0, 6);
+INSERT INTO stockpile VALUES (7, 11, 0, 7);
+INSERT INTO stockpile VALUES (8, 11, 0, 8);
 
+INSERT INTO account VALUES (2, 'aa', '$2a$10$iIim4LtpT2yjxU2YVNDuO.yb1Z2lq86vYBZleAeuIh2aFXjyoMCM.' , 'aa', '', '18888838888', 'aa@gmail.com', '唐家湾港湾大道科技一路3号远光软件股份有限公司');
+INSERT INTO account VALUES (3, 'bb', '$2a$10$iIim4LtpT2yjxU2YVNDuO.yb1Z2lq86vYBZleAeuIh2aFXjyoMCM.' , 'bb', '', '18888828888', 'bb@gmail.com', '唐家湾港湾大道科技一路3号远光软件股份有限公司');
 INSERT INTO account VALUES (1, 'icyfenix', '$2a$10$iIim4LtpT2yjxU2YVNDuO.yb1Z2lq86vYBZleAeuIh2aFXjyoMCM.' , '周志明', '', '18888888888', 'icyfenix@gmail.com', '唐家湾港湾大道科技一路3号远光软件股份有限公司');
 INSERT INTO wallet VALUES (1, 300, 1);
+INSERT INTO wallet VALUES (2, 300, 2);
+INSERT INTO wallet VALUES (3, 300, 3);

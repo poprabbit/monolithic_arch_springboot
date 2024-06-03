@@ -61,7 +61,7 @@ public class JWTAccessToken extends JwtAccessTokenConverter {
         setSigningKey(JWT_TOKEN_SIGNING_PRIVATE_KEY);
         // 设置从资源请求中带上来的JWT令牌转换回安全上下文中的用户信息的查询服务
         // 如果不设置该服务，则从JWT令牌获得的Principal就只有一个用户名（令牌中确实就只存了用户名）
-        // 将用户用户信息查询服务提供给默认的令牌转换器，使得转换令牌时自动根据用户名还原出完整的用户对象
+        // 将用户信息查询服务提供给默认的令牌转换器，使得转换令牌时自动根据用户名还原出完整的用户对象
         // 这方便了后面编码（可以在直接获得登陆用户信息），但也稳定地为每次请求增加了一次（从数据库/缓存）查询，自行取舍
         DefaultUserAuthenticationConverter converter = new DefaultUserAuthenticationConverter();
         converter.setUserDetailsService(userDetailsService);
