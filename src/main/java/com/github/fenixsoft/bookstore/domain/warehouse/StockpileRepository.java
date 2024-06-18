@@ -16,20 +16,17 @@
  *        https://github.com/fenixsoft
  */
 
-package com.github.fenixsoft.bookstore.domain.payment;
+package com.github.fenixsoft.bookstore.domain.warehouse;
 
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Optional;
-
 /**
- * 钱包数据仓库
+ * 库存数据仓库
  *
  * @author icyfenix@gmail.com
- * @date 2020/3/12 16:35
+ * @date 2020/3/12 16:36
  **/
-public interface WalletRepository extends CrudRepository<Wallet, Integer> {
+public interface StockpileRepository extends CrudRepository<Stockpile, Integer> {
 
-    Optional<Wallet> findByAccountId(Integer accountId);
 
 }

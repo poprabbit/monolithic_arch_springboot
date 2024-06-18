@@ -20,8 +20,8 @@ package com.github.fenixsoft.bookstore.resource;
 
 import com.github.fenixsoft.bookstore.applicaiton.ProductApplicationService;
 import com.github.fenixsoft.bookstore.domain.auth.Role;
-import com.github.fenixsoft.bookstore.domain.payment.Stockpile;
 import com.github.fenixsoft.bookstore.domain.warehouse.Product;
+import com.github.fenixsoft.bookstore.domain.warehouse.Stockpile;
 import com.github.fenixsoft.bookstore.infrastructure.jaxrs.CommonResponse;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;

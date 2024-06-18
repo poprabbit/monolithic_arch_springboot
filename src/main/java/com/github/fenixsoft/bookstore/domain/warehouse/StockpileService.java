@@ -16,7 +16,7 @@
  *        https://github.com/fenixsoft
  */
 
-package com.github.fenixsoft.bookstore.domain.payment;
+package com.github.fenixsoft.bookstore.domain.warehouse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

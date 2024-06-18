@@ -1,16 +1,14 @@
 package com.github.fenixsoft.bookstore.resource;
 
-import com.github.fenixsoft.bookstore.domain.payment.Stockpile;
 import com.github.fenixsoft.bookstore.domain.warehouse.Product;
+import com.github.fenixsoft.bookstore.domain.warehouse.Stockpile;
 import org.json.JSONException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.util.Assert;
 
 import javax.ws.rs.core.Response;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author icyfenix@gmail.com

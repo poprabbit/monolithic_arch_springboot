@@ -19,7 +19,9 @@
 package com.github.fenixsoft.bookstore.applicaiton.payment;
 
 import com.github.fenixsoft.bookstore.applicaiton.payment.dto.Settlement;
-import com.github.fenixsoft.bookstore.domain.payment.*;
+import com.github.fenixsoft.bookstore.domain.account.WalletService;
+import com.github.fenixsoft.bookstore.domain.payment.Payment;
+import com.github.fenixsoft.bookstore.domain.payment.PaymentService;
 import com.github.fenixsoft.bookstore.domain.warehouse.ProductService;
 import org.springframework.cache.Cache;
 

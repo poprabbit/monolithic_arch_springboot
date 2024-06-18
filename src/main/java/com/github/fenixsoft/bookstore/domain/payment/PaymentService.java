@@ -19,6 +19,7 @@
 package com.github.fenixsoft.bookstore.domain.payment;
 
 import com.github.fenixsoft.bookstore.applicaiton.payment.dto.Settlement;
+import com.github.fenixsoft.bookstore.domain.warehouse.StockpileService;
 import com.github.fenixsoft.bookstore.infrastructure.cache.CacheConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +74,7 @@ public class PaymentService {
         paymentRepository.save(payment);
         // 将支付单存入缓存
         settlementCache.put(payment.getPayId(), bill);
-        log.info("创建支付订单，总额：{}", payment.getTotalPrice());
+        log.info("编号为{}的支付单已创建，总额：{}", payment.getPayId(), payment.getTotalPrice());
         return payment;
     }
 
@@ -89,7 +90,7 @@ public class PaymentService {
                 payment.setPayState(Payment.State.PAYED);
                 paymentRepository.save(payment);
                 accomplishSettlement(Payment.State.PAYED, payment.getPayId());
-                log.info("编号为{}的支付单已处理完成，等待支付", payId);
+                log.info("编号为{}的支付单已处理完成，等待发货", payId);
                 return payment.getTotalPrice();
             } else {
                 throw new UnsupportedOperationException("当前订单不允许支付，当前状态为：" + payment.getPayState());
@@ -137,8 +138,10 @@ public class PaymentService {
                     // 使用2分钟之前的Payment到数据库中查出当前的Payment
                     Payment currentPayment = paymentRepository.findById(payment.getId()).orElseThrow(() -> new EntityNotFoundException(payment.getId().toString()));
                     if (currentPayment.getPayState() == Payment.State.WAITING) {
-                        log.info("支付单{}当前状态为：WAITING，转变为：TIMEOUT", payment.getId());
+                        payment.setPayState(Payment.State.TIMEOUT);
+                        paymentRepository.save(payment);
                         accomplishSettlement(Payment.State.TIMEOUT, payment.getPayId());
+                        log.info("编号为{}的支付单已超时，状态转变为TIMEOUT", payment.getId());
                     }
                 }
             }

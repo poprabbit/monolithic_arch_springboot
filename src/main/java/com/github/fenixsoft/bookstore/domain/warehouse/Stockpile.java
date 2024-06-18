@@ -16,10 +16,9 @@
  *        https://github.com/fenixsoft
  */
 
-package com.github.fenixsoft.bookstore.domain.payment;
+package com.github.fenixsoft.bookstore.domain.warehouse;
 
 import com.github.fenixsoft.bookstore.domain.BaseEntity;
-import com.github.fenixsoft.bookstore.domain.account.Account;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,35 +26,52 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
- * 用户钱包
+ * 商品库存
  *
  * @author icyfenix@gmail.com
- * @date 2020/3/12 16:30
+ * @date 2020/3/12 16:34
  **/
-
 @Entity
-public class Wallet extends BaseEntity {
+public class Stockpile extends BaseEntity {
 
-    // 这里是偷懒，正式项目中请使用BigDecimal来表示金额
-    private Double money;
+    private Integer amount;
+
+    private Integer frozen;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @JoinColumn(name = "product_id")
+    private transient Product product;
 
-    public Double getMoney() {
-        return money;
+    public Integer getAmount() {
+        return amount;
     }
 
-    public void setMoney(Double money) {
-        this.money = money;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
-    public Account getAccount() {
-        return account;
+    public void frozen(Integer number) {
+        this.amount -= number;
+        this.frozen += number;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void thawed(Integer number) {
+        frozen(-1 * number);
+    }
+
+    public void decrease(Integer number) {
+        this.frozen -= number;
+    }
+
+    public void increase(Integer number) {
+        this.amount += number;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

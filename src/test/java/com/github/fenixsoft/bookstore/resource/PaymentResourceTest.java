@@ -2,13 +2,11 @@ package com.github.fenixsoft.bookstore.resource;
 
 import com.github.fenixsoft.bookstore.applicaiton.payment.dto.Settlement;
 import com.github.fenixsoft.bookstore.domain.payment.Payment;
-import com.github.fenixsoft.bookstore.domain.payment.Stockpile;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**

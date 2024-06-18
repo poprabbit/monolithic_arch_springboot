@@ -19,7 +19,7 @@
 package com.github.fenixsoft.bookstore.domain.payment.validation;
 
 import com.github.fenixsoft.bookstore.applicaiton.payment.dto.Settlement;
-import com.github.fenixsoft.bookstore.domain.payment.StockpileService;
+import com.github.fenixsoft.bookstore.domain.warehouse.StockpileService;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;

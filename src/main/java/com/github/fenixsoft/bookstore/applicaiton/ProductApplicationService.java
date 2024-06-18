@@ -18,10 +18,10 @@
 
 package com.github.fenixsoft.bookstore.applicaiton;
 
-import com.github.fenixsoft.bookstore.domain.payment.Stockpile;
-import com.github.fenixsoft.bookstore.domain.payment.StockpileService;
 import com.github.fenixsoft.bookstore.domain.warehouse.Product;
 import com.github.fenixsoft.bookstore.domain.warehouse.ProductService;
+import com.github.fenixsoft.bookstore.domain.warehouse.Stockpile;
+import com.github.fenixsoft.bookstore.domain.warehouse.StockpileService;
 
 import javax.inject.Inject;
 import javax.inject.Named;

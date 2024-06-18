@@ -20,10 +20,8 @@ package com.github.fenixsoft.bookstore.resource;
 
 import com.github.fenixsoft.bookstore.applicaiton.payment.PaymentApplicationService;
 import com.github.fenixsoft.bookstore.domain.account.Account;
-import com.github.fenixsoft.bookstore.domain.auth.AuthenticAccount;
 import com.github.fenixsoft.bookstore.domain.auth.Role;
 import com.github.fenixsoft.bookstore.domain.payment.Payment;
-import com.github.fenixsoft.bookstore.domain.payment.Stockpile;
 import com.github.fenixsoft.bookstore.infrastructure.jaxrs.CommonResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
