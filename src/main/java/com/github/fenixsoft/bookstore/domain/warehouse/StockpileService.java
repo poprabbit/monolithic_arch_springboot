@@ -76,9 +76,16 @@ public class StockpileService {
      */
     public void frozen(Integer productId, Integer amount) {
         Stockpile stock = repository.findById(productId).orElseThrow(() -> new EntityNotFoundException(productId.toString()));
+        log.info("冻结库存前，商品：{}，库存数量：{}，待冻结：{}", productId, stock.getAmount(), amount);
+        try {
+            // 模拟高并发
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         stock.frozen(amount);
         repository.save(stock);
-        log.info("冻结库存，商品：{}，数量：{}", productId, amount);
+        log.info("冻结库存，商品：{}，库存数量：{}，本次冻结：{}", productId, stock.getAmount(), amount);
     }
 
     /**

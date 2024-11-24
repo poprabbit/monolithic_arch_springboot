@@ -20,10 +20,7 @@ package com.github.fenixsoft.bookstore.domain.warehouse;
 
 import com.github.fenixsoft.bookstore.domain.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * 商品库存
@@ -37,6 +34,9 @@ public class Stockpile extends BaseEntity {
     private Integer amount;
 
     private Integer frozen;
+
+    @Version
+    private Integer version;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")

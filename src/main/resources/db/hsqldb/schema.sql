@@ -47,6 +47,7 @@ CREATE TABLE stockpile
     id         INTEGER IDENTITY PRIMARY KEY,
     amount     INTEGER,
     frozen     INTEGER,
+    version     INTEGER,
     product_id INTEGER
 );
 ALTER TABLE stockpile
